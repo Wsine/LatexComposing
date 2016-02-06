@@ -1,6 +1,7 @@
-# LatexComposing
-Share some good latex composing .tex
+# ObsessiveComposing
+Share some good composing files
 
 ## Contents
 
-- CodePrinter
+- Latex
+	- CodePrinter
