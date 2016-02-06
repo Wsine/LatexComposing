@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Code Highlighter</title>
+	<meta charset="utf-8">
+	<!-- Include required JS file -->
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shAutoloader.js"></script>
+	<!-- Include at lease one brush JS file -->
+	<!-- <script type="text/javascript" src="scripts/shBrushCpp.js"></script> -->
+	<!-- Include at least the core style and default theme -->
+	<link type="text/css" rel="stylesheet" href="styles/shCore.css" />
+	<link type="text/css" rel="stylesheet" href="styles/shThemeDefault.css"/>
+	<!-- A4 page and some css code -->
+	<link rel="stylesheet" type="text/css" href="styles/a4page.css">
+</head>
+<body>
+<div class="a4">
+
+<!-- Add your code below -->
+<h1>ShowString.cpp</h1>
+<script type="syntaxhighlighter" class="brush: cpp" id="code"><![CDATA[
+/* Show String in Win32 Windows */
+#include <Windows.h>
+
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+	PSTR szCmdLine, int iCmdShow) {
+	static TCHAR szAppName[] = TEXT("Hello");
+	HWND         hwnd;
+	MSG          msg;
+	WNDCLASS     wndclass;
+
+	wndclass.style = CS_HREDRAW | CS_VREDRAW;
+	wndclass.lpfnWndProc = WndProc;
+	wndclass.cbClsExtra = 0;
+	wndclass.cbWndExtra = 0;
+	wndclass.hInstance = hInstance;
+	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndclass.hbrBackground = (HBRUSH) GetStockObject(WHITE_BRUSH);
+	wndclass.lpszMenuName = NULL;
+	wndclass.lpszClassName = szAppName;
+
+	if (!RegisterClass(&wndclass)) {
+		MessageBox(NULL, TEXT("Program requires Windows NT!"),
+			szAppName, MB_ICONERROR);
+		return 0;
+	}
+
+	hwnd = CreateWindow(szAppName, TEXT("Hello World"),
+		WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		NULL, NULL, hInstance, NULL);
+
+	ShowWindow(hwnd, iCmdShow);
+	UpdateWindow(hwnd);
+
+	while (GetMessage(&msg, NULL, 0, 0)) {
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+	return msg.wParam;
+}
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
+	HDC hdc;
+	static int cxClient, cyClient;
+	switch (message) {
+	case WM_SIZE:
+		cxClient = LOWORD(lParam);
+		cyClient = HIWORD(lParam);
+		return 0;
+
+	case WM_PAINT:
+		hdc = GetDC(hwnd);
+		TextOutW(hdc, cxClient / 2 - 40, cyClient / 2 - 10, L"Hello world!", 12);
+		ReleaseDC(hwnd, hdc);
+		return 0;
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;
+	default:
+		return DefWindowProc(hwnd, message, wParam, lParam);
+	}
+}
+]]></script>
+
+</div>
+<script type="text/javascript">
+	function path() {
+		var args = arguments;
+		result = [];
+		for (var i = 0; i < args.length; i++) {
+			result.push(args[i].replace('$', 'scripts/'));
+		};
+		return result;
+	}
+	SyntaxHighlighter.autoloader.apply(null, path(
+		'applescript            $shBrushAppleScript.js',
+		'actionscript3 as3      $shBrushAS3.js',
+		'bash shell             $shBrushBash.js',
+		'coldfusion cf          $shBrushColdFusion.js',
+		'cpp c                  $shBrushCpp.js',
+		'c# c-sharp csharp      $shBrushCSharp.js',
+		'css                    $shBrushCss.js',
+		'delphi pascal          $shBrushDelphi.js',
+		'diff patch pas         $shBrushDiff.js',
+		'erl erlang             $shBrushErlang.js',
+		'groovy                 $shBrushGroovy.js',
+		'java                   $shBrushJava.js',
+		'jfx javafx             $shBrushJavaFX.js',
+		'js jscript javascript  $shBrushJScript.js',
+		'perl pl                $shBrushPerl.js',
+		'php                    $shBrushPhp.js',
+		'text plain             $shBrushPlain.js',
+		'py python              $shBrushPython.js',
+		'ruby rails ror rb      $shBrushRuby.js',
+		'sass scss              $shBrushSass.js',
+		'scala                  $shBrushScala.js',
+		'sql                    $shBrushSql.js',
+		'vb vbnet               $shBrushVb.js',
+		'xml xhtml xslt html    $shBrushXml.js'
+	));
+
+	function getHighlightArray() {
+		var array = [];
+		var code = document.getElementById('code').innerHTML;
+		var lines = code.split("\n").length;
+		var i = 2;
+		while (i < lines) {
+			array.push(i);
+			i += 2;
+		}
+		return array;
+	}
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['highlight'] = getHighlightArray();
+	SyntaxHighlighter.defaults['tab-size'] = 4;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+</body>
+</html>

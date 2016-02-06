@@ -1,0 +1,22 @@
+@font-face {
+	font-family: Consolas;
+	src: url("fonts/consola.ttf");
+}
+body {
+	font-family: Consolas, "MicrosoftYaHei", "Courier New", "SimHei", sans-serif!important;
+	background-color: white!important;
+	margin: 0!important;
+	padding: 20px!important;
+}
+div.syntaxhighlighter {
+	overflow-x: auto!important;
+	overflow-y: hidden!important;
+}
+.a4 {
+	width: 807px;
+}
+.a4 > h1 {
+	margin: 0 auto;
+	padding: 0 auto;
+	text-align: center;
+}
