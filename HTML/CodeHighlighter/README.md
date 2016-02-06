@@ -10,3 +10,7 @@ replace the code in the `<script type="syntaxhighlighter" class="brush: cpp">` a
 Adjust the value of `.a4 { width=?px; }` in styles/a4page.css file.
 ####3. Print through the browser
 Right click the page and print it.
+
+## Example
+
+[Code Highlighter.pdf](https://github.com/Wsine/ObsessiveComposing/blob/master/HTML/CodeHighlighter/Code%20Highlighter.pdf)
