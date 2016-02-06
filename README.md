@@ -5,5 +5,6 @@ Share some good composing files
 
 - HTML
 	- CodeHighlighter
+	- FlowChartSVG
 - Latex
 	- CodePrinter

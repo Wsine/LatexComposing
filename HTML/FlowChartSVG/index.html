@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>FlowChartSVG</title>
+	<script type="text/javascript" src="js/raphael-min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/flowchart.js"></script>
+</head>
+<body>
+
+<!-- Add your flow code below -->
+<pre class="flow"><code>
+st=>start: Start|past:>http://www.google.com[blank]
+e=>end: End:>http://www.google.com
+op1=>operation: My Operation|past
+op2=>operation: Stuff|current
+sub1=>subroutine: My Subroutine|invalid
+cond=>condition: Yes 
+or No?|approved:>http://www.baidu.com
+c2=>condition: Good idea|rejected
+io=>inputoutput: catch something...|request
+
+st->op1(right)->cond
+cond(yes, right)->c2
+cond(no)->sub1(left)->op1
+c2(yes)->io->e
+c2(no)->op2->e
+</code></pre>
+
+</body>
+<script>
+	var chart;
+	var preAll = document.getElementsByTagName('pre');
+	for (var i = 0; i < preAll.length; i++) {
+		if (preAll[i].className == 'flow') {
+			var preFLow = preAll[i].getElementsByTagName('code');
+			var flowCode = preFLow[0].innerHTML;
+			flowCode = flowCode.replace(new RegExp("&gt;", "gm"), ">");
+			var flowChartDiagram = 'flowChartDiagram' + i;
+			preAll[i].insertAdjacentHTML("afterEnd", "<div id=\"" + flowChartDiagram + "\" style=\"max-width: 100%; overflow-x: scroll;\"></div>");
+			chart = flowchart.parse(flowCode);
+			chart.drawSVG(flowChartDiagram);
+			var flowChartSVG = document.getElementById(flowChartDiagram).firstChild;
+			flowChartSVG.style.overflow = "scroll";
+			preAll[i].style.display = "none";
+		}
+	};
+</script>
+</html>
