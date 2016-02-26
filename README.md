@@ -8,3 +8,4 @@ Share some good composing files
 	- FlowChartSVG
 - Latex
 	- CodePrinter
+	- AlgorithmSlide
