@@ -1,0 +1,182 @@
+\documentclass[mathserif,notheorems]{beamer}
+
+\usepackage[slantfont,boldfont]{xeCJK}
+\usepackage{fontspec}
+\setCJKmainfont{SimSun}
+\setmainfont{SimSun}
+\setsansfont{SimSun}
+\setmonofont{Consolas}
+
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{color,xcolor}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{subfigure}
+\usepackage{amsthm}
+\usepackage{listings}
+
+% code setting
+\newfontfamily\consolas{Consolas}
+\lstset{ %
+	%language=xml,
+	basicstyle=\scriptsize\consolas,    % the size of the fonts that are used for the code
+	% keywordstyle=\bfseries\color{black},
+	% commentstyle=\itshape\color{black},
+	keywordstyle=\bfseries\color{red!50!black},
+	commentstyle=\itshape\color{green!50!black},
+	stringstyle=\color{black},%{orange!80!black},
+	numbers=left,                       % where to put the line-numbers
+	numberstyle=\scriptsize,            % the size of the fonts that are used for the line-numbers
+	%stepnumber=1,                      % the step between two line-numbers. If it is 1 each line will be numbered
+	%numbersep=5pt,                     % how far the line-numbers are from the code
+	backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+	xleftmargin=2em,
+	xrightmargin=2em,
+	showspaces=false,                   % show spaces adding particular underscores
+	showstringspaces=false,             % underline spaces within strings
+	showtabs=false,                     % show tabs within strings adding particular underscores
+	frame=single,                       % adds a frame around the code
+	tabsize=4,                          % sets default tabsize to 2 spaces
+	captionpos=b,                       % sets the caption-position to bottom
+	breaklines=true,                    % sets automatic line breaking
+	breakatwhitespace=false,            % sets if automatic breaks should only happen at whitespace
+	escapeinside={\%*}{*)},             % if you want to add a comment within your code
+	inputpath={{snippet/}}
+}
+
+%\usetheme{Warsaw}
+\usetheme{Madrid}
+\usecolortheme{whale}
+
+% ------------------------------------------------------------------
+
+%\newtheorem{proposition}{Proposition}
+\newtheorem{proposition}{命题}
+\newtheorem{theorem}{定理}
+\newtheorem{definition}{定义}
+\newtheorem{example}{例}
+
+\renewcommand\figurename{图}
+\renewcommand\tablename{表}
+
+\setbeamertemplate{theorems}[numbered]
+
+% ------------------------------------------------------------------
+
+\begin{document}
+
+\title[算法设计]{算法设计实验课第一讲}
+\author[Wsine]{韦政源}
+\date[February, 2016]{2016~年~2~月~26~日}
+% \institute{中山大学~移动信息工程学院}
+% \titlegraphic{\includegraphics[height=0.15\textwidth]{SYSU_Logo.jpg}}
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{算法设计实验课第一讲}
+\linespread{1.2}   %%扩大行距 1.2 倍
+\centerline{\bfseries\large\color{violet}题目}
+\begin{enumerate}
+\item 1020 Big Integer
+\item 1020 Big Integer
+\item 1020 Big Integer
+\item 1020 Big Integer
+\item 1020 Big Integer
+\item 1020 Big Integer
+\item 1020 Big Integer
+\end{enumerate}
+\end{frame}
+
+\begin{frame} 
+\linespread{1.2}
+\frametitle{算法设计实验课第一讲}
+\centerline{\bfseries\large\color{violet}分栏}
+\begin{columns}
+\column{.45\textwidth}
+\begin{itemize}
+\item DFS
+	\begin{itemize}
+	\item 1020 Big Integer
+	\item 1020 Big Integer
+	\item 1020 Big Integer
+	\item 1020 Big Integer
+	\item 1020 Big Integer
+	\end{itemize}
+\end{itemize}
+\column{.45\textwidth}
+\begin{itemize}
+\item BFS
+	\begin{itemize}
+	\item 1020 Big Integer
+	\item 1020 Big Integer
+	\item 1020 Big Integer
+	\item 1020 Big Integer
+	\item 1020 Big Integer
+	\end{itemize}
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\defverbatim[colored]\lstI{
+\begin{lstlisting}[language=C++]
+int div(char x[], int b) {
+	int a = 0; 
+	// simulation computing
+	for (int i = 0; x[i] != '\0'; i++) {
+		a = (a * 10 + x[i] - '0') % b;
+	}
+	return a;
+}
+\end{lstlisting}
+}
+\begin{frame}
+\frametitle{算法设计实验课第一讲}
+\centerline{\bfseries\large\color{violet}1020 Big Integer}
+\begin{description}
+\linespread{2.5}   %%扩大行距 1.2 倍
+\item[算法类别] 大数操作
+\item[题目大意] 给出n个整数b$_1$,b$_2$,...,b$_n$，和一个大整数x，求x对每个数b$_i$取模的结果
+\item[范围要求] n<=100, 1<b$_i$<=1000, x的长度不超过400
+\item[解题思路] 对b$_i$逐个计算；高精度，模拟竖式计算
+\end{description}
+\lstI
+\end{frame}
+
+\begin{frame}
+\frametitle{算法设计实验课第一讲}
+\begin{exampleblock}{勾股定理}
+$a^2 + b^2 = c^2$
+\end{exampleblock}
+\begin{block}{勾股定理}
+$a^2 + b^2 = c^2$
+\end{block}
+\begin{alertblock}{勾股定理}
+$a^2 + b^2 = c^2$
+\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{算法设计实验课第一讲}
+\begin{table}[tb]
+\centering
+\caption{示例\label{tab:tablename}}
+\begin{tabular}{l|cc} \hline
+\textbf{column 1} & \textbf{column 2} & \textbf{column 3} \\ \hline
+Hello & Beamer & NAN \\ \hline
+$\alpha+\beta$ & $\gamma+\eta$ & 34\% \\ \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{算法设计实验课第一讲}
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.9\textwidth]{sample.jpg}
+\caption{示例\label{fig:figure1}}
+\end{figure}
+\end{frame}
+
+\end{document}
