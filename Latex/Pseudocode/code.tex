@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+
+\begin{document}
+
+\begin{algorithm}
+$S \leftarrow {\tt GetContainersMemoryStore}()$\;
+$C \leftarrow {\tt MakeContainerSlice}()$\;
+\For {$c \in S$} {
+    ${\tt AddReadLock}(c)$\;
+    ${\tt SubscribeToContainerStats}(c)$\;
+    ${\tt AppendToSlice}(c, C)$\;
+    ${\tt unsubscribeToContainerStats}(c)$\;
+    ${\tt RemoveReadLock}(c)$\;
+}
+\Return $C$\;
+\caption{DATEXLA's algorithm for collecting the containers' informations}
+\end{algorithm}
+
+\begin{algorithm}
+\SetKwInOut{Input}{Input}
+\Input{Service Name $s$}
+$nodeMap \leftarrow {\tt GetNodes}()$\;
+$taskMap \leftarrow {\tt GetTask}(s)$\;
+$ApplyMultipleThreadPool()$\;
+\For {$t \in taskMap$} {
+    $c = ParseContainerID(t)$\;
+    $ApplyAsyncThread()$\; 
+    \Indp\While {true} {
+        $CollectStat(c)$\;
+        $PrintStat()$\;
+    }
+}
+$PoolDoLoop()$
+\caption{DATEXLA's algorithm for collecting the services' informations}
+\end{algorithm}
+
+\begin{algorithm}
+$S \leftarrow {\tt GetContainersMemoryStore}()$\;
+$h \leftarrow {\tt DefineHostStat}()$\;
+\For {$c \in S$} {
+    ${\tt AddReadLock}(c)$\;
+    ${\tt SubscribeToContainerStats}(c)$\;
+    $p \leftarrow {\tt ExtractParamter(c)}$\;
+    ${\tt AddToHostStat(h, p)}$\;
+    ${\tt unsubscribeToContainerStats}(c)$\;
+    ${\tt RemoveReadLock}(c)$\;
+}
+\Return $h$\;
+\caption{DATEXLA's algorithm for collecting the host's informations}
+\end{algorithm}
+
+\end{document}
