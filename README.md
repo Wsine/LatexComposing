@@ -9,3 +9,4 @@ Share some good composing files
 - Latex
 	- CodePrinter
 	- AlgorithmSlide
+	- Pseudocode
